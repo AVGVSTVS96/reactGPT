@@ -21,7 +21,6 @@ body {
   height: 100dvh;
   margin: 0;
 
-  /* background-color: hsl(240, 45%, 9%); */
   background-image: radial-gradient(
       circle at center center,
       transparent 50%,
