@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,3 +14,33 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  margin: 0;
+
+  /* background-color: hsl(240, 45%, 9%); */
+  background-image: radial-gradient(
+      circle at center center,
+      transparent 50%,
+      rgb(0, 0, 0) 200%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(63, 63, 63, 0.2) 0px,
+      rgba(63, 63, 63, 0.2) 1px,
+      transparent 1px,
+      transparent 38px /* Control Grid Size */
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(63, 63, 63, 0.2) 0px,
+      rgba(63, 63, 63, 0.2) 1px,
+      transparent 1px,
+      transparent 38px /* Control Grid Size */
+    ),
+    linear-gradient(90deg, hsl(240, 17%, 2%), hsl(235, 50%, 9%));
+  color: hsl(240, 76%, 87%);
+}
