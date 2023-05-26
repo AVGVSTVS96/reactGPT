@@ -5,13 +5,16 @@ const Menubar = () => {
   const [systemMessage, setSystemMessage] = useState('');
   const [isGpt4, setIsGpt4] = useState(false);
 
-  const handleSystemMessageChange = (event) => {
+  const SystemMessageChange = (event) => {
     setSystemMessage(event.target.value);
   }
 
-  const handleModelToggleChange = () => {
-    setIsGpt4(!isGpt4);
-  }
+  const ModelToggleChange = (event) => {
+    setIsGpt4(event.target.checked);
+  };
+  
+  const modelName = isGpt4 ? 'gpt-4' : 'gpt-3.5';
+
 
   return (
     <div className="menubar">
@@ -21,7 +24,7 @@ const Menubar = () => {
         id="system-message"
         placeholder="Enter system message"
         value={systemMessage}
-        onChange={handleSystemMessageChange}
+        onChange={SystemMessageChange}
       />
 
       <div className="model-toggle-container">
@@ -31,13 +34,13 @@ const Menubar = () => {
             id="model-toggle"
             autoComplete="off"
             checked={isGpt4}
-            onChange={handleModelToggleChange}
+            onChange={ModelToggleChange}
           />
 
           <span className="slider">
-            <span className="model-label" id="model-label-left">{isGpt4 ? 'GPT-4' : 'GPT-3.5'}</span>
+            <span className="model-label" id="model-label-left">{'GPT-3.5'}</span>
             <div className="toggle"></div>
-            <span className="model-label" id="model-label-right">{isGpt4 ? 'GPT-4' : 'GPT-3.5'}</span>
+            <span className="model-label" id="model-label-right">{'GPT-4'}</span>
           </span>
         </label>
       </div>
