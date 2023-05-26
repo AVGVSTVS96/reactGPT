@@ -3,7 +3,7 @@ import './MenuBar.css';
 
 const Menubar = () => {
   const [systemMessage, setSystemMessage] = useState('');
-  const [isGpt4, setIsGpt4] = useState(false);
+  const [modelValue, setIsGpt4] = useState(false);
 
   const SystemMessageChange = (event) => {
     setSystemMessage(event.target.value);
@@ -13,7 +13,7 @@ const Menubar = () => {
     setIsGpt4(event.target.checked);
   };
   
-  const modelName = isGpt4 ? 'gpt-4' : 'gpt-3.5';
+  const modelName = modelValue ? 'gpt-4' : 'gpt-3.5';
 
 
   return (
@@ -33,7 +33,7 @@ const Menubar = () => {
             type="checkbox"
             id="model-toggle"
             autoComplete="off"
-            checked={isGpt4}
+            checked={modelValue}
             onChange={ModelToggleChange}
           />
 
