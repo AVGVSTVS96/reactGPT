@@ -22,46 +22,6 @@
     align-items: center;
   }
   
-  .settings-toggle {
-    background-color: transparent;
-    color: hsl(240, 76%, 87%);
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .settings-toggle:hover {
-    color: hsl(240, 76%, 67%);
-  }
-  
-  .settings-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 10px;
-    background-color: hsla(235, 20%, 10%, 0.9); /* new */
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  }
-  
-  /* Stack settings on top of eachother */
-  .settings-dropdown input,
-  .settings-dropdown select {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 5px;
-  }
-  
-  .settings-dropdown > * {
-    margin-bottom: 5px;
-  }
-  
-  .settings-dropdown > *:last-child {
-    margin-bottom: 0;
-  }
-  
   .model-toggle-container {
     display: flex;
     align-items: center;
