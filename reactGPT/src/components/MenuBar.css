@@ -22,14 +22,14 @@
 
 .input {
   flex-grow: 1;
-  height: 10px;
+  height: 27px;
   min-width: 70px;
   border-radius: 7px;
   border: 2px solid hsla(240, 25%, 75%, 0.016);
-  padding: 10px; /* FIX sets the height of the input */
   background-color: hsl(235, 20%, 20%);
   color: hsl(240, 25%, 75%);
   transition: border-color 0.2s ease-in-out;
+  padding-left: 7px;
 }
 
 .input:focus {
