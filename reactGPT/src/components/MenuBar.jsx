@@ -3,14 +3,14 @@ import "./MenuBar.css";
 
 const Menubar = () => {
   const [systemMessage, setSystemMessage] = useState("");
-  const [modelValue, setIsGpt4] = useState(false);
+  const [modelValue, setModelValue] = useState(false);
 
   const SystemMessageChange = (event) => {
     setSystemMessage(event.target.value);
   };
 
   const ModelToggleChange = (event) => {
-    setIsGpt4(event.target.checked);
+    setModelValue(event.target.checked);
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -27,8 +27,7 @@ const Menubar = () => {
         onChange={SystemMessageChange}
       />
 
-      <div className="model-toggle-container">
-        <label className="toggle-background">
+        <label className="slider-container">
           <input
             type="checkbox"
             id="model-toggle"
@@ -37,13 +36,13 @@ const Menubar = () => {
             onChange={ModelToggleChange}
           />
 
-          <span className="slider-wrapper">
+          <span className="slider-track">
             <span className="model-label" id="model-label-left">{"GPT-3.5"}</span>
             <div className="slider"></div>
             <span className="model-label" id="model-label-right">{"GPT-4"}</span>
           </span>
         </label>
-      </div>
+    
     </div>
   );
 };

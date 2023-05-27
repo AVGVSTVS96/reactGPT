@@ -38,38 +38,38 @@
 }
 
 .input,
-.model-toggle-container {
+.slider-container {
   margin-left: var(--side-margin);
   margin-right: var(--side-margin);
 }
 
-.model-toggle-container {
+.slider-container {
   display: flex;
   align-items: center;
-}
-
-.toggle-background {
   position: relative;
   display: inline-block;
   width: 130px;
   height: 2em;
-}
-
-.toggle-background input {
-  display: none;
-}
-
-.slider-wrapper {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0 0 auto auto;
   cursor: pointer;
   background-color: hsl(240, 10%, 15%);
-  transition: 0.4s;
   border-radius: 5px;
+  inset: 0 0 auto auto;
+  transition: 0.4s;
+}
+
+
+.slider-container input {
+  /* display: none; */
+  opacity: 0;
+  position: fixed;
+}
+
+.slider-track {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .slider {
@@ -82,7 +82,7 @@
   transition: 0.4s;
 }
 
-input:checked + .slider-wrapper .slider {
+input:checked + .slider-track .slider {
   left: 50%;
 }
 
