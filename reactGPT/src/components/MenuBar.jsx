@@ -30,7 +30,6 @@ const Menubar = () => {
         <label className="slider-container">
           <input
             type="checkbox"
-            id="model-toggle"
             autoComplete="off"
             checked={modelValue}
             onChange={ModelToggleChange}

@@ -1,6 +1,7 @@
 :root {
   --side-margin: 4px;
   --top-bottom-padding: 4px;
+  --inner-roundness: 5.5px;
 }
 
 /* Menubar styles */
@@ -24,7 +25,7 @@
   flex-grow: 1;
   height: 27px;
   min-width: 70px;
-  border-radius: 7px;
+  border-radius: var(--inner-roundness);
   border: 2px solid hsla(240, 25%, 75%, 0.016);
   background-color: hsl(235, 20%, 20%);
   color: hsl(240, 25%, 75%);
@@ -44,16 +45,12 @@
 }
 
 .slider-container {
-  display: flex;
-  align-items: center;
   position: relative;
-  display: inline-block;
   width: 130px;
   height: 2em;
   cursor: pointer;
   background-color: hsl(240, 10%, 15%);
-  border-radius: 5px;
-  inset: 0 0 auto auto;
+  border-radius: var(--inner-roundness);
   transition: 0.4s;
 }
 
@@ -77,7 +74,7 @@
   left: 0;
   height: 2em;
   width: 50%;
-  border-radius: 5px;
+  border-radius: var(--inner-roundness);
   background-color: hsl(240, 20%, 20%);
   transition: 0.4s;
 }
