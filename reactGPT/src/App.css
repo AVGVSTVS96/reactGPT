@@ -1,3 +1,7 @@
+:root {
+  --backgroung-grid-size: 38px;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -15,14 +19,14 @@ body {
       rgba(63, 63, 63, 0.2) 0px,
       rgba(63, 63, 63, 0.2) 1px,
       transparent 1px,
-      transparent 38px /* Control Grid Size */
+      transparent var(--backgroung-grid-size)
     ),
     repeating-linear-gradient(
       90deg,
       rgba(63, 63, 63, 0.2) 0px,
       rgba(63, 63, 63, 0.2) 1px,
       transparent 1px,
-      transparent 38px /* Control Grid Size */
+      transparent var(--backgroung-grid-size)
     ),
     linear-gradient(90deg, hsl(240, 17%, 2%), hsl(235, 50%, 9%));
   color: hsl(240, 76%, 87%);
