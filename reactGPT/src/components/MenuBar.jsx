@@ -28,7 +28,7 @@ const Menubar = () => {
       />
 
       <div className="model-toggle-container">
-        <label className="switch">
+        <label className="toggle-background">
           <input
             type="checkbox"
             id="model-toggle"
@@ -37,9 +37,9 @@ const Menubar = () => {
             onChange={ModelToggleChange}
           />
 
-          <span className="slider">
+          <span className="slider-wrapper">
             <span className="model-label" id="model-label-left">{'GPT-3.5'}</span>
-            <div className="toggle"></div>
+            <div className="slider"></div>
             <span className="model-label" id="model-label-right">{'GPT-4'}</span>
           </span>
         </label>

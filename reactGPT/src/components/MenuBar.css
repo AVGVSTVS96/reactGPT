@@ -1,6 +1,6 @@
 :root {
-    --side-margin: 6px;
-    --top-bottom-padding: 6px;
+    --side-margin: 4px;
+    --top-bottom-padding: 4px;
   }
   
 
@@ -16,7 +16,6 @@
     padding-left: var(--side-margin);
     padding-right: var(--side-margin);
     backdrop-filter: blur(1px);
-    border-bottom: 0.25px solid hsla(235, 30%, 20%, 0.4);
     z-index: 1000;
   
     /* Changes to center menubar */
@@ -61,20 +60,18 @@
     align-items: center;
   }
   
-  .switch {
+  .toggle-background {
     position: relative;
     display: inline-block;
-    width: 8.5em;
+    width: 130px;
     height: 2em;
   }
   
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  .toggle-background input {
+    display: none;
   }
   
-  .slider {
+  .slider-wrapper {
     position: absolute;
     top: 0;
     right: 0;
@@ -88,7 +85,7 @@
     height: 100%;
   }
   
-  .toggle {
+  .slider {
     position: absolute;
     height: 2.0em;
     width: 50%;
@@ -98,7 +95,7 @@
     border-radius: 5px;
   }
   
-  input:checked + .slider .toggle {
+  input:checked + .slider-wrapper .slider {
     left: 50%;
   }
   
