@@ -1,62 +1,9 @@
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
+  line-height: 1.5; /* Possibly unneeded */
+  font-synthesis: none; /* Possibly unneeded */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100dvh;
-  margin: 0;
-
-  background-image: radial-gradient(
-      circle at center center,
-      transparent 50%,
-      rgb(0, 0, 0) 200%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(63, 63, 63, 0.2) 0px,
-      rgba(63, 63, 63, 0.2) 1px,
-      transparent 1px,
-      transparent 38px /* Control Grid Size */
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(63, 63, 63, 0.2) 0px,
-      rgba(63, 63, 63, 0.2) 1px,
-      transparent 1px,
-      transparent 38px /* Control Grid Size */
-    ),
-    linear-gradient(90deg, hsl(240, 17%, 2%), hsl(235, 50%, 9%));
-  color: hsl(240, 76%, 87%);
-}
-
-  .input {
-    flex-grow: 1;
-    min-width: 70px;
-    border-radius: 5px;
-    margin-left: 5px;
-    padding: 10px;
-    border: 0px;
-    background-color: hsl(235, 20%, 15%);
-    color: hsl(240, 25%, 75%);
-    transition: box-shadow 0.2s ease-in-out;
-  }
-  
-  .input:focus {
-    outline: none;
-    box-shadow: inset 0px 0px 12px 0px hsla(235, 20%, 10%, 0.98);
-  }
