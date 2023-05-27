@@ -43,3 +43,20 @@ body {
     linear-gradient(90deg, hsl(240, 17%, 2%), hsl(235, 50%, 9%));
   color: hsl(240, 76%, 87%);
 }
+
+  .input {
+    flex-grow: 1;
+    min-width: 70px;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    border: 0px;
+    background-color: hsl(235, 20%, 15%);
+    color: hsl(240, 25%, 75%);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .input:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 12px 0px hsla(235, 20%, 10%, 0.98);
+  }
