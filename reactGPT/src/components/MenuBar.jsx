@@ -13,8 +13,8 @@ const Menubar = () => {
     setIsGpt4(event.target.checked);
   };
   
+  // eslint-disable-next-line no-unused-vars
   const modelName = modelValue ? 'gpt-4' : 'gpt-3.5';
-
 
   return (
     <div className="menubar">
