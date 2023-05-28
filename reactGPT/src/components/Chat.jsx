@@ -72,7 +72,9 @@ function Chat(props) {
       <div className="chat-wrapper">
         <div id="chat-messages" className="chat-box">
           {messages.map((message, index) => (
-            <p key={index}>{message.role}: {message.content}</p>
+            <div key={index} className={`message ${message.role === 'user' ? 'user-message' : 'assistant-message'}`}>
+              <p>{message.content}</p>
+            </div>
           ))}
         </div>
         <form id="chat-form" className="input-form" onSubmit={handleFormSubmit}>
