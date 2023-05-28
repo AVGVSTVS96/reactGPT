@@ -2,6 +2,25 @@
   --backgroung-grid-size: 38px;
 }
 
+html {
+  scrollbar-color: hsla(0, 0%, 60%, 0.2) transparent;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 60%, 0.15);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(0, 0%, 60%, 0.25);
+}
+
 body {
   display: flex;
   justify-content: center;

@@ -40,7 +40,7 @@ function Chat(props) {
         "Content-Type": "application/json",
       },
     });
-  
+    
     // Handle server response
     if (response.ok) {
       const reader = response.body.getReader();
