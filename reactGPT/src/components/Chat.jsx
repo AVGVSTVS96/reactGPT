@@ -42,18 +42,24 @@ function Chat(props) {
   
     // Handle server response
     if (response.ok) {
-      const eventSource = new EventSource(response.url);
-      eventSource.onmessage = (event) => {
-        const assistantMessage = event.data;
-        setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: assistantMessage }]);
-      };
-      eventSource.onerror = (error) => {
-        console.error(`EventSource failed: ${error}`);
-        eventSource.close();
-      };
-    } else {
-      console.error(`Error: ${response.status}`);
-    }
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let assistantMessage = "";
+    
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) {
+            setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: assistantMessage }]);
+            break;
+          }
+    
+          const text = decoder.decode(value);
+          assistantMessage += text;
+        }
+      } else {
+        console.error(`Error: ${response.status}`);
+      }
   
     // Clear user input
     event.target.user_input.value = '';
