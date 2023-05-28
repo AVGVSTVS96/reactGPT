@@ -26,7 +26,8 @@ function Chat(props) {
     }
   
     // Add user message to messages
-    setMessages([...messages, { role: 'user', content: userInput }]);
+    messages.push({ role: 'user', content: userInput });
+    setMessages([...messages]);
   
     // Send request to server
     const response = await fetch("http://localhost:8000/gpt4", {
@@ -42,24 +43,24 @@ function Chat(props) {
   
     // Handle server response
     if (response.ok) {
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder("utf-8");
-        let assistantMessage = "";
-    
-        // eslint-disable-next-line no-constant-condition
-        while (true) {
-          const { value, done } = await reader.read();
-          if (done) {
-            setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: assistantMessage }]);
-            break;
-          }
-    
-          const text = decoder.decode(value);
-          assistantMessage += text;
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let assistantMessage = "";
+  
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) {
+          setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: assistantMessage }]);
+          break;
         }
-      } else {
-        console.error(`Error: ${response.status}`);
+  
+        const text = decoder.decode(value);
+        assistantMessage += text;
       }
+    } else {
+      console.error(`Error: ${response.status}`);
+    }
   
     // Clear user input
     event.target.user_input.value = '';
