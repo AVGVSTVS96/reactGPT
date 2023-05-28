@@ -4,7 +4,7 @@ import Chat from './components/Chat';
 import './App.css';
 
 function App() {
-  const [modelName, setModelName] = useState("gpt-3.5");
+  const [modelName, setModelName] = useState("gpt-3.5-turbo");
   const [systemMessage, setSystemMessage] = useState("");
 
   const handleModelToggle = (checked) => {
