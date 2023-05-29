@@ -1,20 +1,21 @@
-import { useState } from "react";
+import PropTypes from 'prop-types';
 import "./MenuBar.css";
 
-const Menubar = () => {
-  const [systemMessage, setSystemMessage] = useState("");
-  const [modelValue, setModelValue] = useState(false);
+Menubar.propTypes = {
+  modelName: PropTypes.string,
+  systemMessage: PropTypes.string,
+  onModelToggle: PropTypes.func,
+  onSystemMessageChange: PropTypes.func,
+};
 
-  const SystemMessageChange = (event) => {
-    setSystemMessage(event.target.value);
+function Menubar(props) {
+  const handleModelToggleChange = (event) => {
+    props.onModelToggle(event.target.checked);
   };
 
-  const ModelToggleChange = (event) => {
-    setModelValue(event.target.checked);
+  const handleSystemMessageChange = (event) => {
+    props.onSystemMessageChange(event);
   };
-
-  // eslint-disable-next-line no-unused-vars
-  const modelName = modelValue ? "gpt-4" : "gpt-3.5";
 
   return (
     <div className="menubar">
@@ -23,27 +24,26 @@ const Menubar = () => {
         className="input"
         id="system-message"
         placeholder="Enter system message"
-        value={systemMessage}
-        onChange={SystemMessageChange}
+        value={props.systemMessage}
+        onChange={handleSystemMessageChange}
       />
 
-        <label className="slider-container">
-          <input
-            type="checkbox"
-            autoComplete="off"
-            checked={modelValue}
-            onChange={ModelToggleChange}
-          />
+      <label className="slider-container">
+        <input
+          type="checkbox"
+          autoComplete="off"
+          checked={props.modelName === "gpt-4"}
+          onChange={handleModelToggleChange}
+        />
 
-          <span className="slider-track">
-            <span className="model-label" id="model-label-left">{"GPT-3.5"}</span>
-            <div className="slider"></div>
-            <span className="model-label" id="model-label-right">{"GPT-4"}</span>
-          </span>
-        </label>
-    
+        <span className="slider-track">
+          <span className="model-label" id="model-label-left">{"GPT-3.5"}</span>
+          <div className="slider"></div>
+          <span className="model-label" id="model-label-right">{"GPT-4"}</span>
+        </span>
+      </label>
     </div>
   );
-};
+}
 
 export default Menubar;
