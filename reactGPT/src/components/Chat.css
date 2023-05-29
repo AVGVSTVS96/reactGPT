@@ -79,8 +79,16 @@
     white-space: normal;
   }
   
-  .message code {
+  .message pre {
     border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .message code {
+    background-color: hsl(213, 39%, 17%);
+    border-radius: 3px;
+    color: hsl(240, 50%, 80%);
+    padding: 1px 5px 2px 5px;
   }
   
   .user-message {
