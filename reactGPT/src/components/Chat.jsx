@@ -44,29 +44,69 @@ function Chat(props) {
 
     setMessages([...messages, { role: "user", content: userInput }]);
 
-    // Handle server response
-    if (response.ok) {
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder("utf-8");
-      let assistantMessage = "";
 
-      // eslint-disable-next-line no-constant-condition
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) {
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            { role: "assistant", content: assistantMessage },
-          ]);
-          break;
-        }
 
-        const text = decoder.decode(value);
-        assistantMessage += text;
-      }
-    } else {
-      console.error(`Error: ${response.status}`);
+
+    // no chunk streaming
+    // if (response.ok) {
+    //   const reader = response.body.getReader();
+    //   const decoder = new TextDecoder("utf-8");
+    //   let assistantMessage = "";
+
+    //   // eslint-disable-next-line no-constant-condition
+    //   while (true) {
+    //     const { value, done } = await reader.read();
+    //     if (done) {
+    //       setMessages((prevMessages) => [
+    //         ...prevMessages,
+    //         { role: "assistant", content: assistantMessage },
+    //       ]);
+    //       break;
+    //     }
+
+    //     const text = decoder.decode(value);
+    //     assistantMessage += text;
+    //   }
+    // } else {
+    //   console.error(`Error: ${response.status}`);
+    // }
+
+//   // Stream chunks as different message divs
+//   if (response.ok) {
+//     const reader = response.body.getReader();
+//     const decoder = new TextDecoder("utf-8");
+
+//     while (true) {
+//       const { value, done } = await reader.read();
+//       if (done) break;
+
+//       const text = decoder.decode(value);
+//       setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: text }]);
+//     }
+//   } else {
+//     console.error(`Error: ${response.status}`);
+//   }
+
+  // Handle server response
+  // Attempt to stream chunks as one message div
+  if (response.ok) {
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+
+      const text = decoder.decode(value);
+      setMessages(prevMessages => {
+        let lastMessage = prevMessages.pop();
+        lastMessage = [{ role: "assistant", content: assistantMessage }]
+      })
+      
     }
+  } else {
+    console.error(`Error: ${response.status}`);
+  }
 
     // Clear user input
     event.target.user_input.value = "";
