@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "./Chat.css";
@@ -85,7 +86,7 @@ function Chat(props) {
               key={index}
               className={`message ${message.role === "user" ? "user-message" : "assistant-message"
                 }`}>
-              <p>{message.content}</p>
+              <ReactMarkdown>{message.content}</ReactMarkdown>
             </div>
           ))}
         </div>
