@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import CodeHighlight from './CodeHighlight';
+import CodeHighlight from './utils/CodeHighlight';
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "./Chat.css";
