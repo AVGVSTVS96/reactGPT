@@ -90,15 +90,7 @@ function Chat(props) {
     scrollToBottom();
   }, [messages, scrollCheck, scrollToBottom]);
 
-  // Prevents form submission when the 'Enter' key is pressed without the 'Shift' key.
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      // Submit the form
-      event.target.form.requestSubmit();
-    }
-  };
-
+  
   return (
     <div className="chat-container">
       <h1 className="heading">Canvas GPT</h1>

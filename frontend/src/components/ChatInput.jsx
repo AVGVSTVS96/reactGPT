@@ -13,6 +13,7 @@ function ChatInput({onSubmit}) {
         }
     };
 
+
     return (
         <form id="chat-form" className="input-form" onSubmit={onSubmit}>
             <textarea
