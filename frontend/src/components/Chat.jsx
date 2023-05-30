@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useState, useLayoutEffect } from "react";
 import ChatInput from './ChatInput';
 import Messages from './Messages';
-import "./Chat.css";
+import "./styles/Chat.css";
 
 Chat.propTypes = {
   modelName: PropTypes.string,
