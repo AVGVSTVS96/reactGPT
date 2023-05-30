@@ -82,12 +82,21 @@ function Chat(props) {
   const { messagesEndRef, scrollCheck, scrollToBottom } = useAutoScroll();
 
   useLayoutEffect(() => {
-      // Check if user has scrolled up
-  scrollCheck();
+    // Check if user has scrolled up
+    scrollCheck();
 
     // Call on every messages update
     scrollToBottom();
   }, [messages, scrollCheck, scrollToBottom]);
+
+  // Prevents form submission when the 'Enter' key is pressed without the 'Shift' key.
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      // Submit the form
+      event.target.form.requestSubmit();
+    }
+  };
 
   return (
     <div className="chat-container">
@@ -110,6 +119,7 @@ function Chat(props) {
             id="user-input"
             name="user_input"
             placeholder="Type your message..."
+            onKeyDown={handleKeyDown}
           />
           <button className="button" type="submit" id="submitBtn">
             Send
