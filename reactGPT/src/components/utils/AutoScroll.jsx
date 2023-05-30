@@ -11,21 +11,21 @@ export const useAutoScroll = () => {
     const scrollCheck = () => {
         // Check if there are any messages 
         if (!messagesEndRef.current) return;
-
+      
         const { scrollTop, clientHeight, scrollHeight } = messagesEndRef.current;
-
+        
         // If user scrolls up, turn off auto-scrolling.
         if (scrollTop < lastScrollTop.current) {
-            autoScroll.current = false;
+          autoScroll.current = false;
+        } 
+        // If user scrolls down and is within 100px of the bottom, turn on auto-scrolling.
+        else if (scrollTop > lastScrollTop.current && scrollTop + clientHeight >= scrollHeight - 100) {
+          autoScroll.current = true;
         }
-        // If user scrolls to the bottom, turn on auto-scrolling.
-        else if (scrollTop + clientHeight >= scrollHeight) {
-            autoScroll.current = true;
-        }
-
+      
         // Update the last scroll top position.
         lastScrollTop.current = scrollTop;
-    };
+      };
 
     const scrollToBottom = () => {
         // Auto-scroll if enabled and the chat box element exists.
