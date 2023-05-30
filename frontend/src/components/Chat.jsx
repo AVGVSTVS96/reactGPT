@@ -1,9 +1,8 @@
-import ReactMarkdown from 'react-markdown';
-import CodeHighlight from './utils/CodeHighlight';
 import { useAutoScroll } from './utils/AutoScroll';
 import PropTypes from "prop-types";
 import { useState, useLayoutEffect } from "react";
 import ChatInput from './ChatInput';
+import Messages from './Messages';
 import "./Chat.css";
 
 Chat.propTypes = {
@@ -90,22 +89,13 @@ function Chat(props) {
     scrollToBottom();
   }, [messages, scrollCheck, scrollToBottom]);
 
-  
+
   return (
     <div className="chat-container">
       <h1 className="heading">Canvas GPT</h1>
       <div className="chat-wrapper">
-        <div id="chat-messages" className="chat-box" ref={messagesEndRef} onScroll={scrollCheck}>
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`message ${message.role === "user" ? "user-message" : "assistant-message"
-                }`}>
-              <ReactMarkdown components={{ code: CodeHighlight }}>{message.content}</ReactMarkdown>
-            </div>
-          ))}
-        </div>
-        <ChatInput onSubmit={handleFormSubmit}/>
+        <Messages messages={messages} messagesEndRef={messagesEndRef} scrollCheck={scrollCheck} />
+        <ChatInput onSubmit={handleFormSubmit} />
       </div>
     </div>
   );
