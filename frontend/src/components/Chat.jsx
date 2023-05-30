@@ -3,6 +3,7 @@ import CodeHighlight from './utils/CodeHighlight';
 import { useAutoScroll } from './utils/AutoScroll';
 import PropTypes from "prop-types";
 import { useState, useLayoutEffect } from "react";
+import ChatInput from './ChatInput';
 import "./Chat.css";
 
 Chat.propTypes = {
@@ -112,19 +113,7 @@ function Chat(props) {
             </div>
           ))}
         </div>
-        <form id="chat-form" className="input-form" onSubmit={handleFormSubmit}>
-          <textarea
-            type="text"
-            className="input"
-            id="user-input"
-            name="user_input"
-            placeholder="Type your message..."
-            onKeyDown={handleKeyDown}
-          />
-          <button className="button" type="submit" id="submitBtn">
-            Send
-          </button>
-        </form>
+        <ChatInput onSubmit={handleFormSubmit}/>
       </div>
     </div>
   );
