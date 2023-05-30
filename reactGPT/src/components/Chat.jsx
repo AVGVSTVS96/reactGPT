@@ -1,7 +1,8 @@
 import ReactMarkdown from 'react-markdown';
 import CodeHighlight from './utils/CodeHighlight';
+import { useAutoScroll } from './utils/AutoScroll';
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Chat.css";
 
 Chat.propTypes = {
@@ -77,11 +78,22 @@ function Chat(props) {
     }
   };
 
+  // Hook usage
+  const { messagesEndRef, scrollCheck, scrollToBottom } = useAutoScroll();
+
+  useEffect(() => {
+      // Check if user has scrolled up
+  scrollCheck();
+
+    // Call on every messages update
+    scrollToBottom();
+  }, [messages, scrollCheck, scrollToBottom]);
+
   return (
     <div className="chat-container">
       <h1 className="heading">Canvas GPT</h1>
       <div className="chat-wrapper">
-        <div id="chat-messages" className="chat-box">
+        <div id="chat-messages" className="chat-box" ref={messagesEndRef} onScroll={scrollCheck}>
           {messages.map((message, index) => (
             <div
               key={index}
