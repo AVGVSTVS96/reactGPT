@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import ReactMarkdown from 'react-markdown';
 import CodeHighlight from './utils/CodeHighlight';
+import "./Messages.css";
 
 Messages.propTypes = {
     messages: PropTypes.array.isRequired,

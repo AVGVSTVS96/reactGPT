@@ -1,0 +1,44 @@
+.message {
+    display: inline-block;
+    max-width: 70%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  
+  .message li {
+    white-space: normal;
+  }
+  
+  .message pre {
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .message code {
+    background-color: hsl(213, 39%, 17%);
+    border-radius: 3px;
+    color: hsl(240, 50%, 80%);
+    padding: 1px 5px 2px 5px;
+  }
+  
+  .user-message {
+    background-color: hsl(235, 55%, 45%);
+    color: hsl(240, 76%, 90%);
+    float: right;
+    clear: both;
+  }
+  
+  .assistant-message {
+    background-color: hsl(235, 23%, 65%);
+    color: hsl(240, 30%, 25%);
+    float: left;
+    clear: both;
+  }
+  
+  .message * {
+    margin: 0px;
+  }
