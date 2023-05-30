@@ -21,14 +21,13 @@ function Chat(props) {
 
     // Add user message to messages
     let newMessages = [...messages, { role: "user", content: userInput }];
-    // Clear user input
     event.target.user_input.value = "";
 
     // Update system message
     if (props.systemMessage) {
       newMessages = handleSystemMessage(newMessages, props.systemMessage);
     }
-    
+
     // Send request to server
     const response = await fetch("http://localhost:8000/gpt4", {
       method: "POST",
@@ -72,14 +71,10 @@ function Chat(props) {
     }
   };
 
-  // Hook usage
   const { messagesEndRef, scrollCheck, scrollToBottom } = useAutoScroll();
 
   useLayoutEffect(() => {
-    // Check if user has scrolled up
     scrollCheck();
-
-    // Call on every messages update
     scrollToBottom();
   }, [messages, scrollCheck, scrollToBottom]);
 

@@ -5,7 +5,7 @@ ChatInput.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 };
 
-function ChatInput({onSubmit}) {
+function ChatInput({ onSubmit }) {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
