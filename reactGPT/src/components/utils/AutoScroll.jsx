@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 export const useAutoScroll = () => {
   // Ref for the chat box to control scroll position.
@@ -27,7 +27,7 @@ export const useAutoScroll = () => {
   };
   
   // Run scrollToBottom once when the component mounts.
-  useEffect(() => {
+  useLayoutEffect(() => {
     scrollToBottom();
   }, []);
 

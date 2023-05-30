@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import CodeHighlight from './utils/CodeHighlight';
 import { useAutoScroll } from './utils/AutoScroll';
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import "./Chat.css";
 
 Chat.propTypes = {
@@ -81,7 +81,7 @@ function Chat(props) {
   // Hook usage
   const { messagesEndRef, scrollCheck, scrollToBottom } = useAutoScroll();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
       // Check if user has scrolled up
   scrollCheck();
 
