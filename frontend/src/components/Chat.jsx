@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useState, useLayoutEffect } from "react";
 import ChatInput from './ChatInput';
 import Messages from './Messages';
+import handleSystemMessage from './utils/HandleSystemMessage';
 import "./styles/Chat.css";
 
 Chat.propTypes = {
@@ -25,16 +26,9 @@ function Chat(props) {
 
     // Update system message
     if (props.systemMessage) {
-      let systemMessageIndex = newMessages.findIndex(
-        (message) => message.role === "system"
-      );
-      // If the system message exists in array, remove it
-      if (systemMessageIndex !== -1) {
-        newMessages.splice(systemMessageIndex, 1);
-      }
-      newMessages.push({ role: "system", content: props.systemMessage });
+      newMessages = handleSystemMessage(newMessages, props.systemMessage);
     }
-
+    
     // Send request to server
     const response = await fetch("http://localhost:8000/gpt4", {
       method: "POST",
