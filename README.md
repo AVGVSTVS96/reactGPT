@@ -14,5 +14,4 @@ reactGPT implements several features essential to providing an excellent user ex
 - 💬 Real-time response character streaming functionality
 - 🧩 Markdown support in both user and assistant messages
 - 🎨 Syntax highligting for code with automatic language detection
-## Coming Soon
 - ⚙️ Automatic scrolling with new messages, cancellable by scrolling up 
