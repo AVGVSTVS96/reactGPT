@@ -13,12 +13,12 @@
     white-space: normal;
   }
   
-  .message pre {
+  .message pre div {
     border-radius: 8px;
     font-size: 12px;
   }
-
-  .message code {
+  
+  p code {
     background-color: hsl(213, 39%, 17%);
     border-radius: 3px;
     color: hsl(240, 50%, 80%);
