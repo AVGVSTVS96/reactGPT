@@ -54,7 +54,7 @@ function Chat(props) {
 
   return (
     <div className="chat-container">
-      <h1 className="heading">Canvas GPT</h1>
+      <h1 className="heading">ReactGPT</h1>
       <div className="chat-wrapper">
         <Messages messages={messages} messagesEndRef={messagesEndRef} scrollCheck={scrollCheck} />
         <ChatInput onSubmit={handleFormSubmit} />
