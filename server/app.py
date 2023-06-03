@@ -28,7 +28,7 @@ class Message(BaseModel):
     content: str
 
 
-class Gpt4Request(BaseModel):
+class ChatRequest(BaseModel):
     messages: List[Message]
     model_type: str
 
@@ -50,8 +50,8 @@ async def generate(messages: List[Message], model_type: str):
         yield f"{type(e).__name__}: {str(e)}"
 
 
-@app.post("/gpt4")
-async def gpt4(request: Gpt4Request):
+@app.post("/chat")
+async def chatCompletion(request: ChatRequest):
     assistant_response = generate(request.messages, request.model_type)
     return StreamingResponse(assistant_response, media_type='text/event-stream')
 

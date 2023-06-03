@@ -1,5 +1,5 @@
 export async function SendServerRequest(newMessages, props) {
-  return await fetch('http://localhost:8000/gpt4', {
+  return await fetch('http://localhost:8000/chat', {
     method: 'POST',
     body: JSON.stringify({
       messages: newMessages,
