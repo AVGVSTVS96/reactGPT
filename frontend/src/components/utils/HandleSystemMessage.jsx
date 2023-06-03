@@ -11,4 +11,4 @@ function handleSystemMessage(newMessages, systemMessage) {
     return newMessages;
 }
 
-export default handleSystemMessage;
+export { handleSystemMessage };

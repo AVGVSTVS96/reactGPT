@@ -1,12 +1,12 @@
-import { useAutoScroll } from './utils/AutoScroll';
 import PropTypes from 'prop-types';
-import { useState, useLayoutEffect } from 'react';
 import ChatInput from './ChatInput';
 import Messages from './Messages';
-import handleSystemMessage from './utils/HandleSystemMessage';
-import './styles/Chat.css';
-import { StreamResponse } from './utils/StreamResponse';
+import { useState, useLayoutEffect } from 'react';
+import { handleSystemMessage } from './utils/HandleSystemMessage';
 import { SendServerRequest } from './utils/SendServerRequest';
+import { StreamResponse } from './utils/StreamResponse';
+import { useAutoScroll } from './utils/AutoScroll';
+import './styles/Chat.css';
 
 Chat.propTypes = {
   modelName: PropTypes.string,
