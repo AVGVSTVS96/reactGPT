@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-// eslint-disable-next-line no-unused-vars
-const CodeHighlight = ({ node, inline, className, children, ...props }) => {
+const CodeHighlight = ({ inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || '');
   const language = match ? match[1] : 'plaintext';
 
@@ -24,10 +23,9 @@ const CodeHighlight = ({ node, inline, className, children, ...props }) => {
 };
 
 CodeHighlight.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
-  node: PropTypes.object,
 };
 
 export default CodeHighlight;
