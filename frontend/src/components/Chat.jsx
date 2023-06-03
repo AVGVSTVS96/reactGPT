@@ -5,6 +5,8 @@ import ChatInput from './ChatInput';
 import Messages from './Messages';
 import handleSystemMessage from './utils/HandleSystemMessage';
 import './styles/Chat.css';
+import { StreamResponse } from './utils/StreamResponse';
+import { SendServerRequest } from './utils/SendServerRequest';
 
 Chat.propTypes = {
   modelName: PropTypes.string,
@@ -29,16 +31,7 @@ function Chat(props) {
     }
 
     // Send request to server
-    const response = await fetch('http://localhost:8000/gpt4', {
-      method: 'POST',
-      body: JSON.stringify({
-        messages: newMessages,
-        model_type: props.modelName,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await SendServerRequest(newMessages, props);
 
     setMessages([...messages, { role: 'user', content: userInput }]);
 
@@ -46,31 +39,7 @@ function Chat(props) {
       const reader = response.body.getReader();
       const decoder = new TextDecoder('utf-8');
 
-      // eslint-disable-next-line no-constant-condition
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-
-        const text = decoder.decode(value);
-        setMessages(prevMessages => {
-          // Check if last message was from the assistant
-          if (
-            prevMessages.length > 0 &&
-            prevMessages[prevMessages.length - 1].role === 'assistant'
-          ) {
-            // Create a copy of the last assistant message and append text
-            let lastMessage = {
-              ...prevMessages[prevMessages.length - 1],
-              content: prevMessages[prevMessages.length - 1].content + text,
-            };
-            // Return the messages with the old messages plus the updated message
-            return [...prevMessages.slice(0, -1), lastMessage];
-          } else {
-            // If last message was not from the assistant, add a new message from the assistant
-            return [...prevMessages, { role: 'assistant', content: text }];
-          }
-        });
-      }
+      await StreamResponse(reader, decoder, setMessages);
     } else {
       console.error(`Error: ${response.status}`);
     }
