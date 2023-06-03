@@ -5,7 +5,7 @@ reactGPT is a high performance, customizable GPT-3.5-turbo and GPT-4 chat applic
 
 Like it's siblings [fastGPT](https://github.com/AVGVSTVS96/FastGPT) and [flaskGPT](https://github.com/AVGVSTVS96/flaskGPT), reactGPT is simple in code while offering a rich user experience. It's designed to be easy to use, easy to understand, and easy to build on.
 
-This app started as a [Flask](https://github.com/AVGVSTVS96/flaskGPT) app with a plain JavaScript frontend, then evolved to using [FastAPI](https://github.com/AVGVSTVS96/FastGPT) as the backend to take advantage of imporved performance with asynchronous support for OpenAI API requests. This project is the conversion of [FastAPI based FastGPT](https://github.com/AVGVSTVS96/FastGPT) from plain JavaScript to React to handle the frontend user interface.
+This app started as a [Flask](https://github.com/AVGVSTVS96/flaskGPT) app with a plain JavaScript frontend, then evolved to using [FastAPI](https://github.com/AVGVSTVS96/FastGPT) as the backend to take advantage of imporved performance with asynchronous support for OpenAI API requests. 
 
 reactGPT implements several features essential to providing an excellent user experience and offers a simple and concise implementation in code, ready to be built on and expanded.
 
