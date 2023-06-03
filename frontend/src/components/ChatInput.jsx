@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import './styles/Input.css';
+
 
 ChatInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,

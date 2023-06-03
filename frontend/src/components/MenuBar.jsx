@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import './styles/MenuBar.css';
+import './styles/Input.css';
+
 
 Menubar.propTypes = {
   modelName: PropTypes.string,

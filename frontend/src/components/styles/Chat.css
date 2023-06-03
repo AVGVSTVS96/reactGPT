@@ -29,12 +29,6 @@
     overflow-y: auto;
   }
   
-  .input-form {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-  
   
   .heading {
     text-align: left;
