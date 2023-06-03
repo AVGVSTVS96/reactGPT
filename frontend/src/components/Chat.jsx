@@ -1,9 +1,12 @@
-import ReactMarkdown from 'react-markdown';
-import CodeHighlight from './utils/CodeHighlight';
+import PropTypes from 'prop-types';
+import ChatInput from './ChatInput';
+import Messages from './Messages';
+import { useState, useLayoutEffect } from 'react';
+import { handleSystemMessage } from './utils/HandleSystemMessage';
+import { SendServerRequest } from './utils/SendServerRequest';
+import { StreamResponse } from './utils/StreamResponse';
 import { useAutoScroll } from './utils/AutoScroll';
-import PropTypes from "prop-types";
-import { useState, useLayoutEffect } from "react";
-import "./Chat.css";
+import './styles/Chat.css';
 
 Chat.propTypes = {
   modelName: PropTypes.string,
@@ -13,118 +16,48 @@ Chat.propTypes = {
 function Chat(props) {
   const [messages, setMessages] = useState([]);
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
 
     let userInput = event.target.user_input.value.trim();
 
     // Add user message to messages
-    let newMessages = [...messages, { role: "user", content: userInput }];
-    // Clear user input
-    event.target.user_input.value = "";
+    let newMessages = [...messages, { role: 'user', content: userInput }];
+    event.target.user_input.value = '';
 
     // Update system message
     if (props.systemMessage) {
-      let systemMessageIndex = newMessages.findIndex(
-        (message) => message.role === "system"
-      );
-      // If the system message exists in array, remove it
-      if (systemMessageIndex !== -1) {
-        newMessages.splice(systemMessageIndex, 1);
-      }
-      newMessages.push({ role: "system", content: props.systemMessage });
+      newMessages = handleSystemMessage(newMessages, props.systemMessage);
     }
 
     // Send request to server
-    const response = await fetch("http://localhost:8000/gpt4", {
-      method: "POST",
-      body: JSON.stringify({
-        messages: newMessages,
-        model_type: props.modelName,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await SendServerRequest(newMessages, props);
 
-    setMessages([...messages, { role: "user", content: userInput }]);
-
+    setMessages([...messages, { role: 'user', content: userInput }]);
 
     if (response.ok) {
       const reader = response.body.getReader();
-      const decoder = new TextDecoder("utf-8");
+      const decoder = new TextDecoder('utf-8');
 
-      // eslint-disable-next-line no-constant-condition
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-
-        const text = decoder.decode(value);
-        setMessages(prevMessages => {
-          // Check if last message was from the assistant
-          if (prevMessages.length > 0 && prevMessages[prevMessages.length - 1].role === "assistant") {
-            // Create a copy of the last assistant message and append text
-            let lastMessage = { ...prevMessages[prevMessages.length - 1], content: prevMessages[prevMessages.length - 1].content + text };
-            // Return the messages with the old messages plus the updated message
-            return [...prevMessages.slice(0, -1), lastMessage];
-          } else {
-            // If last message was not from the assistant, add a new message from the assistant
-            return [...prevMessages, { role: "assistant", content: text }];
-          }
-        });
-      }
+      await StreamResponse(reader, decoder, setMessages);
     } else {
       console.error(`Error: ${response.status}`);
     }
   };
 
-  // Hook usage
   const { messagesEndRef, scrollCheck, scrollToBottom } = useAutoScroll();
 
   useLayoutEffect(() => {
-    // Check if user has scrolled up
     scrollCheck();
-
-    // Call on every messages update
     scrollToBottom();
   }, [messages, scrollCheck, scrollToBottom]);
-
-  // Prevents form submission when the 'Enter' key is pressed without the 'Shift' key.
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      // Submit the form
-      event.target.form.requestSubmit();
-    }
-  };
 
   return (
     <div className="chat-container">
       <h1 className="heading">Canvas GPT</h1>
       <div className="chat-wrapper">
-        <div id="chat-messages" className="chat-box" ref={messagesEndRef} onScroll={scrollCheck}>
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`message ${message.role === "user" ? "user-message" : "assistant-message"
-                }`}>
-              <ReactMarkdown components={{ code: CodeHighlight }}>{message.content}</ReactMarkdown>
-            </div>
-          ))}
-        </div>
-        <form id="chat-form" className="input-form" onSubmit={handleFormSubmit}>
-          <textarea
-            type="text"
-            className="input"
-            id="user-input"
-            name="user_input"
-            placeholder="Type your message..."
-            onKeyDown={handleKeyDown}
-          />
-          <button className="button" type="submit" id="submitBtn">
-            Send
-          </button>
-        </form>
+        <Messages messages={messages} messagesEndRef={messagesEndRef} scrollCheck={scrollCheck} />
+        <ChatInput onSubmit={handleFormSubmit} />
       </div>
     </div>
   );

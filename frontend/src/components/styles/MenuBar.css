@@ -21,23 +21,6 @@
   z-index: 1000;
 }
 
-.input {
-  flex-grow: 1;
-  height: 27px;
-  min-width: 70px;
-  border-radius: var(--inner-roundness);
-  border: 2px solid hsla(240, 25%, 75%, 0.016);
-  background-color: hsl(235, 20%, 20%);
-  color: hsl(240, 25%, 75%);
-  transition: border-color 0.2s ease-in-out;
-  padding-left: 7px;
-}
-
-.input:focus {
-  outline: none;
-  border-color: hsl(240, 20%, 40%);
-}
-
 .input,
 .slider-container {
   margin-left: var(--side-margin);

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import "./MenuBar.css";
+import './styles/MenuBar.css';
+import './styles/Input.css';
+
 
 Menubar.propTypes = {
   modelName: PropTypes.string,
@@ -9,11 +11,11 @@ Menubar.propTypes = {
 };
 
 function Menubar(props) {
-  const handleModelToggleChange = (event) => {
+  const handleModelToggleChange = event => {
     props.onModelToggle(event.target.checked);
   };
 
-  const handleSystemMessageChange = (event) => {
+  const handleSystemMessageChange = event => {
     props.onSystemMessageChange(event);
   };
 
@@ -32,14 +34,18 @@ function Menubar(props) {
         <input
           type="checkbox"
           autoComplete="off"
-          checked={props.modelName === "gpt-4"}
+          checked={props.modelName === 'gpt-4'}
           onChange={handleModelToggleChange}
         />
 
         <span className="slider-track">
-          <span className="model-label" id="model-label-left">{"GPT-3.5"}</span>
+          <span className="model-label" id="model-label-left">
+            {'GPT-3.5'}
+          </span>
           <div className="slider"></div>
-          <span className="model-label" id="model-label-right">{"GPT-4"}</span>
+          <span className="model-label" id="model-label-right">
+            {'GPT-4'}
+          </span>
         </span>
       </label>
     </div>
