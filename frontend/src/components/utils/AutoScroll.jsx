@@ -18,8 +18,8 @@ export const useAutoScroll = () => {
     if (scrollTop < lastScrollTop.current) {
       autoScroll.current = false;
     }
-    // If user scrolls down and is within 100px of the bottom, turn on auto-scrolling.
-    else if (scrollTop > lastScrollTop.current && scrollTop + clientHeight >= scrollHeight - 100) {
+    // If user scrolls down and is within 175px of the bottom, turn on auto-scrolling.
+    else if (scrollTop > lastScrollTop.current && scrollTop + clientHeight >= scrollHeight - 175) {
       autoScroll.current = true;
     }
 
@@ -31,7 +31,10 @@ export const useAutoScroll = () => {
     // Auto-scroll if enabled and the chat box element exists.
     if (autoScroll.current && messagesEndRef.current) {
       window.requestAnimationFrame(() => {
-        messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+        messagesEndRef.current.scrollTo({
+          top: messagesEndRef.current.scrollHeight,
+          behavior: "smooth"
+        });
       });
     }
   };
