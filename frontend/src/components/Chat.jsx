@@ -1,10 +1,10 @@
 import { useAutoScroll } from './utils/AutoScroll';
-import PropTypes from "prop-types";
-import { useState, useLayoutEffect } from "react";
+import PropTypes from 'prop-types';
+import { useState, useLayoutEffect } from 'react';
 import ChatInput from './ChatInput';
 import Messages from './Messages';
 import handleSystemMessage from './utils/HandleSystemMessage';
-import "./styles/Chat.css";
+import './styles/Chat.css';
 
 Chat.propTypes = {
   modelName: PropTypes.string,
@@ -14,14 +14,14 @@ Chat.propTypes = {
 function Chat(props) {
   const [messages, setMessages] = useState([]);
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
 
     let userInput = event.target.user_input.value.trim();
 
     // Add user message to messages
-    let newMessages = [...messages, { role: "user", content: userInput }];
-    event.target.user_input.value = "";
+    let newMessages = [...messages, { role: 'user', content: userInput }];
+    event.target.user_input.value = '';
 
     // Update system message
     if (props.systemMessage) {
@@ -29,23 +29,22 @@ function Chat(props) {
     }
 
     // Send request to server
-    const response = await fetch("http://localhost:8000/gpt4", {
-      method: "POST",
+    const response = await fetch('http://localhost:8000/gpt4', {
+      method: 'POST',
       body: JSON.stringify({
         messages: newMessages,
         model_type: props.modelName,
       }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
-    setMessages([...messages, { role: "user", content: userInput }]);
-
+    setMessages([...messages, { role: 'user', content: userInput }]);
 
     if (response.ok) {
       const reader = response.body.getReader();
-      const decoder = new TextDecoder("utf-8");
+      const decoder = new TextDecoder('utf-8');
 
       // eslint-disable-next-line no-constant-condition
       while (true) {
@@ -55,14 +54,20 @@ function Chat(props) {
         const text = decoder.decode(value);
         setMessages(prevMessages => {
           // Check if last message was from the assistant
-          if (prevMessages.length > 0 && prevMessages[prevMessages.length - 1].role === "assistant") {
+          if (
+            prevMessages.length > 0 &&
+            prevMessages[prevMessages.length - 1].role === 'assistant'
+          ) {
             // Create a copy of the last assistant message and append text
-            let lastMessage = { ...prevMessages[prevMessages.length - 1], content: prevMessages[prevMessages.length - 1].content + text };
+            let lastMessage = {
+              ...prevMessages[prevMessages.length - 1],
+              content: prevMessages[prevMessages.length - 1].content + text,
+            };
             // Return the messages with the old messages plus the updated message
             return [...prevMessages.slice(0, -1), lastMessage];
           } else {
             // If last message was not from the assistant, add a new message from the assistant
-            return [...prevMessages, { role: "assistant", content: text }];
+            return [...prevMessages, { role: 'assistant', content: text }];
           }
         });
       }
@@ -77,7 +82,6 @@ function Chat(props) {
     scrollCheck();
     scrollToBottom();
   }, [messages, scrollCheck, scrollToBottom]);
-
 
   return (
     <div className="chat-container">

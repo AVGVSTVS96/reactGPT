@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from 'react';
 
 export const useAutoScroll = () => {
   // Ref for the chat box to control scroll position.
@@ -9,7 +9,7 @@ export const useAutoScroll = () => {
   const lastScrollTop = useRef(0);
 
   const scrollCheck = () => {
-    // Check if there are any messages 
+    // Check if there are any messages
     if (!messagesEndRef.current) return;
 
     const { scrollTop, clientHeight, scrollHeight } = messagesEndRef.current;
@@ -33,7 +33,7 @@ export const useAutoScroll = () => {
       window.requestAnimationFrame(() => {
         messagesEndRef.current.scrollTo({
           top: messagesEndRef.current.scrollHeight,
-          behavior: "smooth"
+          behavior: 'smooth',
         });
       });
     }

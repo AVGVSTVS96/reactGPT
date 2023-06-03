@@ -8,7 +8,12 @@ const CodeHighlight = ({ node, inline, className, children, ...props }) => {
   const language = match ? match[1] : 'plaintext';
 
   return !inline ? (
-    <SyntaxHighlighter style={coldarkDark} language={language} showLineNumbers={false} PreTag="div" {...props}>
+    <SyntaxHighlighter
+      style={coldarkDark}
+      language={language}
+      showLineNumbers={false}
+      PreTag="div"
+      {...props}>
       {String(children).replace(/\n$/, '')}
     </SyntaxHighlighter>
   ) : (
