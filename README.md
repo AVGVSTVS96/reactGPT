@@ -33,6 +33,7 @@ reactGPT implements several features essential to providing an excellent user ex
   npm install
 ```
 ## 4. Start the frontend dev server
+*The frontend dev server allows you to make changes to the frontend code and see them in real time*
 ```bash
   npm run dev
 ```
@@ -61,4 +62,20 @@ $  touch .env
 
 ```bash
 $  uvicorn app:app --reload
+# Note: remove --reload if you don't need to edit the code
+```
+
+# Build the frontend for to optimize performance
+*If you don't want to make any changes to the code, replace steps 1-4 with the following to build the frontend for production, optimizing the web page for performance*
+## 1. Go to the project directory
+```bash
+  cd reactGPT
+```
+## 2. Build the frontend
+```bash
+  npm run build
+```
+## 3. Start the frontend server based on the latest build
+```bash
+  npm run preview
 ```
