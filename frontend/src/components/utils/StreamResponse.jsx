@@ -1,8 +1,11 @@
 export async function StreamResponse(reader, decoder, setMessages) {
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
+  let streaming = true;
+   while (streaming) {
     const { value, done } = await reader.read();
-    if (done) break;
+    if (done) {
+       streaming = false;
+       break;
+     }
 
     const text = decoder.decode(value);
     setMessages(prevMessages => {
