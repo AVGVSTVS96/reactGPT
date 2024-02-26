@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import "../styles/tokyo-night-dark.min.css"
 
 const CodeHighlight = ({ inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || '');
@@ -8,7 +8,7 @@ const CodeHighlight = ({ inline, className, children, ...props }) => {
 
   return !inline ? (
     <SyntaxHighlighter
-      style={coldarkDark}
+      useInlineStyles={false}
       language={language}
       showLineNumbers={false}
       PreTag="div"
