@@ -1,5 +1,10 @@
 # reactGPT
-*A React app that has been converted from a plain JS FastAPI version [fastGPT](https://github.com/AVGVSTVS96/FastGPT)*
+
+> [!NOTE]
+>A React app that has been converted from a plain JS FastAPI version [fastGPT](https://github.com/AVGVSTVS96/FastGPT)
+
+> [!WARNING]
+> Functionality isn't perfect compared to FastAPI version, there are some bugs like auto scrolling not working correctly, and different system message handling
 
 reactGPT is a high performance, customizable GPT-3.5-turbo and GPT-4 chat application built with FastAPI, React, and OpenAI's API. 
 
@@ -66,7 +71,10 @@ $  uvicorn app:app --reload
 ```
 
 # Build the frontend for to optimize performance
-*If you don't want to make any changes to the code, replace steps 1-4 with the following to build the frontend for production, optimizing the web page for performance*
+
+> [!TIP]
+> If you don't want to make any changes to the code, replace steps 1-4 with the following to build the frontend for production, optimizing the web page for performance
+
 ## 1. Go to the project directory
 ```bash
   cd reactGPT
